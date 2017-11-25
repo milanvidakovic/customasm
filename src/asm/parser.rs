@@ -149,6 +149,11 @@ impl<'a, 'b> AssemblerParser<'a, 'b>
 		{
 			for _ in 0..8
 			{
+				let bit = false;
+				self.state.output_bit(self.parser.report, bit, &tk_string.span)?;
+			}
+			for _ in 0..8
+			{
 				let bit = byte & 0x80 != 0;
 				self.state.output_bit(self.parser.report, bit, &tk_string.span)?;
 				byte <<= 1;

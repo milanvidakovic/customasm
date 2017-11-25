@@ -49,7 +49,11 @@ impl BinaryOutput
 	{
 		self.generate_str(4, start_bit, end_bit)
 	}
-	
+
+	pub fn generate_hexstr2(&self, start_bit: usize, end_bit: usize) -> String
+	{
+		self.generate_str2(4, start_bit, end_bit)
+	}
 	
 	pub fn generate_str(&self, digit_bits: usize, start_bit: usize, end_bit: usize) -> String
 	{
@@ -72,6 +76,40 @@ impl BinaryOutput
 				{ ('a' as u8 + digit - 10) as char };
 				
 			result.push(c);
+		}
+		
+		result
+	}
+	
+	pub fn generate_str2(&self, digit_bits: usize, start_bit: usize, end_bit: usize) -> String
+	{
+		let mut result = String::new();
+		result.push_str("v2.0 raw\n");
+		
+		let mut index = start_bit;
+		let mut i = 0;
+		while index < end_bit
+		{
+			let mut digit: u8 = 0;
+			for _ in 0..digit_bits
+			{
+				digit <<= 1;
+				digit |= if self.read(index) { 1 } else { 0 };
+				index += 1;
+			}
+			
+			let c = if digit < 10
+				{ ('0' as u8 + digit) as char }
+			else
+				{ ('a' as u8 + digit - 10) as char };
+				
+			result.push(c);
+			i += 1;
+			if i == 4 
+			{
+				result.push(' ');
+				i = 0;
+			}
 		}
 		
 		result
