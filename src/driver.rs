@@ -11,6 +11,7 @@ enum OutputFormat
 	Binary,
 	BinStr,
 	HexStr,
+	HexStr2,
 	BinDump,
 	HexDump
 }
@@ -62,6 +63,7 @@ fn drive_inner(report: &mut Report, opts: &getopts::Options, args: &Vec<String>,
 		Some("binstr")  => OutputFormat::BinStr,
 		Some("bindump") => OutputFormat::BinDump,
 		Some("hexstr")  => OutputFormat::HexStr,
+		Some("hexstr2")  => OutputFormat::HexStr2,
 		Some("hexdump") => OutputFormat::HexDump,
 		
 		Some("binary") |
@@ -91,6 +93,7 @@ fn drive_inner(report: &mut Report, opts: &getopts::Options, args: &Vec<String>,
 		OutputFormat::BinStr  => compiled.generate_binstr (0, compiled.len()).bytes().collect::<Vec<u8>>(),
 		OutputFormat::BinDump => compiled.generate_bindump(0, compiled.len()).bytes().collect::<Vec<u8>>(),
 		OutputFormat::HexStr  => compiled.generate_hexstr (0, compiled.len()).bytes().collect::<Vec<u8>>(),
+		OutputFormat::HexStr2  => compiled.generate_hexstr2 (0, compiled.len()).bytes().collect::<Vec<u8>>(),
 		OutputFormat::HexDump => compiled.generate_hexdump(0, compiled.len()).bytes().collect::<Vec<u8>>(),
 		OutputFormat::Binary  => compiled.generate_binary (0, compiled.len())
 	};
@@ -120,7 +123,7 @@ fn make_opts() -> getopts::Options
     opts.optflag("h", "help", "Display this information.");
     opts.optflag("v", "version", "Display version information.");
     opts.optflag("q", "quiet", "Suppress progress reports.");
-    opts.optopt("f", "format", "The format of the output file. Possible formats: binary, binstr, hexstr, bindump, hexdump", "FORMAT");
+    opts.optopt("f", "format", "The format of the output file. Possible formats: binary, binstr, hexstr, hexstr2, bindump, hexdump", "FORMAT");
     opts.optopt("o", "out-data", "The name of the output file. (Default: a.out)", "FILE");
     opts.optflag("", "stdout", "Write output to stdout instead of a file.");
 	
