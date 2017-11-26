@@ -19,7 +19,7 @@ Options:
     -v, --version       Display version information.
     -q, --quiet         Suppress progress reports.
     -f, --format FORMAT The format of the output file. Possible formats:
-                        binary, binstr, hexstr, bindump, hexdump
+                        binary, binstr, hexstr, bindump, hexdump, hexdump2 <-- for the LogiSim
     -o, --out-data FILE The name of the output file. (Default: a.out)
         --stdout        Write output to stdout instead of a file.
 ```
