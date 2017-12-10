@@ -1,7 +1,7 @@
 # customasm
 This fork is different in two things:
   - has one more output format: -f hexdump2 which exports the machine code into the LogiSim RAM/ROM content file format
-  - has #str16 keyword which creates 16-bit strings with the same sytax as #str
+  - has #str16 keyword which creates 16-bit strings with the same syntax as #str
   
 This is an assembler that takes custom instruction set definitions
 and uses them to assemble source files.  
